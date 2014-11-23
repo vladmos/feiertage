@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>
+    Add the following link to your calendar app:
+</p>
+
+<pre>
+    http://holidays.fulc.ru/calendar/?region=XX
+</pre>
+
+<p>
+    where XX should be substituted with one of the codes of regions in Germany:
+</p>
+
+<ul>
+    {% for code, name in regions %}
+        <li><b>{{ code }}:</b> {{ name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
