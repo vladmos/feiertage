@@ -1,10 +1,9 @@
 import datetime
-from hashlib import md5
 
 import webapp2
 from webapp2_extras import jinja2
-import icalendar
 
+import calendar
 from holidays import dates
 
 
@@ -35,9 +34,10 @@ class Calendar(webapp2.RequestHandler):
             return
 
         current_year = datetime.date.today().year
-        calendar = icalendar.Calendar()
-        calendar.add('summary', u'Feiertage in %s, Deutschland' % dates.REGIONS[region])
-        calendar.add('prodid', 'fulc.ru')
+        feed = calendar.Calendar(
+            summary=u'Feiertage in %s, Deutschland' % dates.REGIONS[region],
+            prodid=u'fulc.ru'
+        )
 
         for year in [current_year, current_year + 1]:
             for name, (date, regions) in dates.HOLIDAYS.iteritems():
@@ -48,12 +48,7 @@ class Calendar(webapp2.RequestHandler):
 
                 day, month = date
 
-                event = icalendar.Event()
-                event.add('uid', md5(name.encode('utf-8') + str(year)).hexdigest())
-                event.add('summary', name)
-                event.add('dtstart;value=date', '%04d%02d%02d' % (year, month, day))
-
-                calendar.add_component(event)
+                feed.add_event(name, '%04d%02d%02d' % (year, month, day))
 
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write(calendar.to_ical())
+        self.response.write(feed.to_ical())
