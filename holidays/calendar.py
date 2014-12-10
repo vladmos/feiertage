@@ -27,14 +27,17 @@ class Calendar(object):
         lines = []
 
         lines.append(u'BEGIN:VCALENDAR')
+        lines.append(u'CALSCALE:GREGORIAN')
         lines.append(u'PRODID:%s' % self.prodid)
-        lines.append(u'SUMMARY:%s' % self.summary)
+        lines.append(u'VERSION:2.0')
+        lines.append(u'X-WR-CALNAME:%s' % self.summary)
 
         for event in self.events:
             lines.append(u'BEGIN:VEVENT')
             lines.append(u'SUMMARY:%s' % event.summary)
             lines.append(u'UID:%s' % event.uid)
             lines.append(u'DTSTART;VALUE=DATE:%s' % event.date)
+            lines.append(u'TRANSP:TRANSPARENT')
             lines.append(u'END:VEVENT')
 
         lines.append(u'END:VCALENDAR')
