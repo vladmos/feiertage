@@ -32,7 +32,7 @@ class Calendar(object):
         lines.append(u'VERSION:2.0')
         lines.append(u'X-WR-CALNAME:%s' % self.summary)
 
-        for event in self.events:
+        for event in sorted(self.events, key=lambda e: e.date):
             lines.append(u'BEGIN:VEVENT')
             lines.append(u'SUMMARY:%s' % event.summary)
             lines.append(u'UID:%s' % event.uid)

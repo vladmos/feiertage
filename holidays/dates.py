@@ -2,11 +2,14 @@
 
 from datetime import date, timedelta
 
-def easter_day(year, shift):
-    day, month = EASTERS[year]
-    easter = date(year, month, day)
-    the_date = easter + timedelta(shift)
-    return the_date.day, the_date.month
+
+def easter_day(shift):
+    def inner(year):
+        day, month = EASTERS[year]
+        easter = date(year, month, day)
+        the_date = easter + timedelta(shift)
+        return the_date.day, the_date.month
+    return inner
 
 
 def wednesday_before_november_23(year):
@@ -28,6 +31,8 @@ EASTERS = {
     2020: (12, 4),
 }
 
+# Assuming that there are no gaps in EASTERS
+MAXIMUM_KNOWN_YEAR = max(EASTERS.iterkeys())
 
 REGIONS = {
     'BW': u'Baden-Württemberg',
@@ -51,12 +56,12 @@ REGIONS = {
 HOLIDAYS = {
     u'Neujahrstag': ((1, 1), None),
     u'Heilige Drei Könige': ((6, 1), {'BW', 'BY', 'ST'}),
-    u'Karfreitag': (lambda year: easter_day(year, -2), None),
-    u'Ostermontag': (lambda year: easter_day(year, 1), None),
+    u'Karfreitag': (easter_day(-2), None),
+    u'Ostermontag': (easter_day(1), None),
     u'Tag der Arbeit': ((1, 5), None),
-    u'Christi Himmelfahrt': (lambda year: easter_day(year, 39), None),
-    u'Pfingstmontag': (lambda year: easter_day(year, 50), None),
-    u'Fronleichnam': (lambda year: easter_day(year, 60), {'BW', 'BY', 'HE', 'NW', 'RP', 'SL'}),
+    u'Christi Himmelfahrt': (easter_day(39), None),
+    u'Pfingstmontag': (easter_day(50), None),
+    u'Fronleichnam': (easter_day(60), {'BW', 'BY', 'HE', 'NW', 'RP', 'SL'}),
     u'Friedensfest': ((8, 8), {}),
     u'Mariä Himmelfahrt': ((15, 8), {'SL'}),
     u'Tag der Deutschen Einheit': ((3, 10), None),
