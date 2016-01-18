@@ -1,10 +1,11 @@
+from __future__ import unicode_literals, absolute_import, print_function
+
 import datetime
 
 import webapp2
 from webapp2_extras import jinja2
 
-import calendar
-from holidays import dates
+from holidays import dates, calendar
 
 
 class MainPage(webapp2.RequestHandler):
@@ -35,8 +36,8 @@ class Calendar(webapp2.RequestHandler):
 
         current_year = datetime.date.today().year
         feed = calendar.Calendar(
-            summary=u'Feiertage in %s, Deutschland' % dates.REGIONS[region],
-            prodid=u'fulc.ru'
+            summary='Feiertage in %s, Deutschland' % dates.REGIONS[region],
+            prodid='fulc.ru'
         )
 
         for year in xrange(current_year, dates.MAXIMUM_KNOWN_YEAR + 1):

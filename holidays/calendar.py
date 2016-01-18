@@ -1,6 +1,8 @@
 """
 iCal generator
 """
+from __future__ import unicode_literals, absolute_import, print_function
+
 from hashlib import md5
 
 
@@ -26,20 +28,20 @@ class Calendar(object):
     def to_ical(self):
         lines = []
 
-        lines.append(u'BEGIN:VCALENDAR')
-        lines.append(u'CALSCALE:GREGORIAN')
-        lines.append(u'PRODID:%s' % self.prodid)
-        lines.append(u'VERSION:2.0')
-        lines.append(u'X-WR-CALNAME:%s' % self.summary)
+        lines.append('BEGIN:VCALENDAR')
+        lines.append('CALSCALE:GREGORIAN')
+        lines.append('PRODID:%s' % self.prodid)
+        lines.append('VERSION:2.0')
+        lines.append('X-WR-CALNAME:%s' % self.summary)
 
         for event in sorted(self.events, key=lambda e: e.date):
-            lines.append(u'BEGIN:VEVENT')
-            lines.append(u'SUMMARY:%s' % event.summary)
-            lines.append(u'UID:%s' % event.uid)
-            lines.append(u'DTSTART;VALUE=DATE:%s' % event.date)
-            lines.append(u'TRANSP:TRANSPARENT')
-            lines.append(u'END:VEVENT')
+            lines.append('BEGIN:VEVENT')
+            lines.append('SUMMARY:%s' % event.summary)
+            lines.append('UID:%s' % event.uid)
+            lines.append('DTSTART;VALUE=DATE:%s' % event.date)
+            lines.append('TRANSP:TRANSPARENT')
+            lines.append('END:VEVENT')
 
-        lines.append(u'END:VCALENDAR')
+        lines.append('END:VCALENDAR')
 
-        return u'\n'.join(lines)
+        return '\n'.join(lines)
