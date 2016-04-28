@@ -29,7 +29,7 @@ class Calendar(webapp2.RequestHandler):
     def get(self):
         region = self.request.get('region', '').upper()
         if region not in dates.REGIONS:
-            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.headers[b'Content-Type'] = b'text/plain'
             self.response.status = 404
             self.response.write('Unknown region: %s' % region)
             return
@@ -51,5 +51,5 @@ class Calendar(webapp2.RequestHandler):
 
                 feed.add_event(name, '%04d%02d%02d' % (year, month, day))
 
-        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.headers[b'Content-Type'] = b'text/plain'
         self.response.write(feed.to_ical())
