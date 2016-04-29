@@ -13,7 +13,7 @@ class Event(object):
 
     @property
     def uid(self):
-        return md5(self.summary.encode('utf-8') + self.date).hexdigest()
+        return md5((self.summary + self.date).encode('utf-8')).hexdigest()
 
 
 class Calendar(object):
