@@ -7,4 +7,4 @@ from holidays import views
 application = webapp2.WSGIApplication([
     ('/', views.MainPage),
     ('/calendar/', views.Calendar),
-], debug=True)
+], debug=False)
