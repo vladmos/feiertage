@@ -4,6 +4,23 @@ from __future__ import unicode_literals, absolute_import, print_function
 from datetime import date, timedelta
 
 
+EASTERS = {
+    2016: (27, 3),
+    2017: (16, 4),
+    2018: (1, 4),
+    2019: (21, 4),
+    2020: (12, 4),
+}
+
+FIRST_ADVENTS = {
+    2016: (27, 11),
+    2017: (3, 12),
+    2018: (2, 12),
+    2019: (1, 12),
+    2020: (29, 11),
+}
+
+
 def easter_day(shift):
     def inner(year):
         day, month = EASTERS[year]
@@ -13,24 +30,13 @@ def easter_day(shift):
     return inner
 
 
-def wednesday_before_november_23(year):
-    november_23 = date(year, 11, 23)
-    shift = november_23.weekday() - 2
-    if shift <= 0:
-        shift += 7
-    wednesday = november_23 - timedelta(shift)
+def second_wednesday_before_the_first_advent(year):
+    first_advent_day, first_advent_month = FIRST_ADVENTS[year]
+    first_advent = date(year, first_advent_month, first_advent_day)
+    # First advent is always on Sunday
+    wednesday = first_advent - timedelta(11)
     return wednesday.day, wednesday.month
 
-
-EASTERS = {
-    2014: (20, 4),
-    2015: (5, 4),
-    2016: (27, 3),
-    2017: (16, 4),
-    2018: (1, 4),
-    2019: (21, 4),
-    2020: (12, 4),
-}
 
 # Assuming that there are no gaps in EASTERS
 MAXIMUM_KNOWN_YEAR = max(EASTERS.iterkeys())
@@ -70,7 +76,7 @@ HOLIDAYS = {
     'Tag der Deutschen Einheit': ((3, 10), None),
     'Reformationstag': ((31, 10), {'BB', 'MW', 'SN', 'ST', 'TH'}),
     'Allerheiligen': ((1, 11), {'BW', 'BY', 'BY-AU', 'BY-MU', 'NW', 'RP', 'SL'}),
-    'Buß- und Bettag': (wednesday_before_november_23, {'SN'}),
+    'Buß- und Bettag': (second_wednesday_before_the_first_advent, {'SN'}),
     'Weihnachtstag': ((25, 12), None),
     'Zweiter Weihnachtsfeiertag': ((26, 12), None),
 }
