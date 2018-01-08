@@ -74,3 +74,7 @@ HOLIDAYS = {
     'Weihnachtstag': ((25, 12), None),
     'Zweiter Weihnachtsfeiertag': ((26, 12), None),
 }
+
+GLOBAL_EXCEPTIONS = {
+    'Reformationstag': [2017],
+}

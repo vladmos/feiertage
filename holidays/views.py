@@ -40,10 +40,11 @@ class Calendar(webapp2.RequestHandler):
             prodid='fulc.ru'
         )
 
-        for year in xrange(current_year, dates.MAXIMUM_KNOWN_YEAR + 1):
+        for year in xrange(current_year - 1, dates.MAXIMUM_KNOWN_YEAR + 1):
             for name, (date, regions) in dates.HOLIDAYS.iteritems():
                 if regions is not None and region not in regions:
-                    continue
+                    if year not in dates.GLOBAL_EXCEPTIONS.get(name, []):
+                        continue
                 if callable(date):
                     date = date(year)
 
