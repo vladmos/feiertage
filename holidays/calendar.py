@@ -7,9 +7,9 @@ from hashlib import md5
 
 
 class Event(object):
-    def __init__(self, summary, date):
+    def __init__(self, summary, year, month, day):
         self.summary = summary
-        self.date = date
+        self.date = '%04d%02d%02d' % (year, month, day)
 
     @property
     def uid(self):

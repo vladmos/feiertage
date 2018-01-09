@@ -48,9 +48,7 @@ class Calendar(webapp2.RequestHandler):
                 if callable(date):
                     date = date(year)
 
-                day, month = date
-
-                feed.add_event(name, '%04d%02d%02d' % (year, month, day))
+                feed.add_event(name, year, *date)
 
         self.response.headers[b'Content-Type'] = b'text/plain'
         self.response.write(feed.to_ical())

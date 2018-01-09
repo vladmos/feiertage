@@ -5,37 +5,35 @@ from datetime import date, timedelta
 
 
 EASTERS = {
-    2016: (27, 3),
-    2017: (16, 4),
-    2018: (1, 4),
-    2019: (21, 4),
-    2020: (12, 4),
+    2016: (3, 27),
+    2017: (4, 16),
+    2018: (4, 1),
+    2019: (4, 21),
+    2020: (4, 12),
 }
 
 FIRST_ADVENTS = {
-    2016: (27, 11),
-    2017: (3, 12),
-    2018: (2, 12),
-    2019: (1, 12),
-    2020: (29, 11),
+    2016: (11, 27),
+    2017: (12, 3),
+    2018: (12, 2),
+    2019: (12, 1),
+    2020: (11, 29),
 }
 
 
 def easter_day(shift):
     def inner(year):
-        day, month = EASTERS[year]
-        easter = date(year, month, day)
+        easter = date(year, *EASTERS[year])
         the_date = easter + timedelta(shift)
-        return the_date.day, the_date.month
+        return the_date.month, the_date.day
     return inner
 
 
 def second_wednesday_before_the_first_advent(year):
-    first_advent_day, first_advent_month = FIRST_ADVENTS[year]
-    first_advent = date(year, first_advent_month, first_advent_day)
+    first_advent = date(year, *FIRST_ADVENTS[year])
     # First advent is always on Sunday
     wednesday = first_advent - timedelta(11)
-    return wednesday.day, wednesday.month
+    return wednesday.month, wednesday.day
 
 
 # Assuming that there are no gaps in EASTERS
@@ -64,21 +62,21 @@ REGIONS = {
 
 HOLIDAYS = {
     'Neujahrstag': ((1, 1), None),
-    'Heilige Drei Könige': ((6, 1), {'BW', 'BY', 'BY-AU', 'BY-MU', 'ST'}),
+    'Heilige Drei Könige': ((1, 6), {'BW', 'BY', 'BY-AU', 'BY-MU', 'ST'}),
     'Karfreitag': (easter_day(-2), None),
     'Ostermontag': (easter_day(1), None),
-    'Tag der Arbeit': ((1, 5), None),
+    'Tag der Arbeit': ((5, 1), None),
     'Christi Himmelfahrt': (easter_day(39), None),
     'Pfingstmontag': (easter_day(50), None),
     'Fronleichnam': (easter_day(60), {'BW', 'BY', 'BY-AU', 'BY-MU', 'HE', 'NW', 'RP', 'SL'}),
     'Friedensfest': ((8, 8), {'BY-AU'}),
-    'Mariä Himmelfahrt': ((15, 8), {'BY-AU', 'BY-MU', 'SL'}),
-    'Tag der Deutschen Einheit': ((3, 10), None),
-    'Reformationstag': ((31, 10), {'BB', 'MW', 'SN', 'ST', 'TH'}),
-    'Allerheiligen': ((1, 11), {'BW', 'BY', 'BY-AU', 'BY-MU', 'NW', 'RP', 'SL'}),
+    'Mariä Himmelfahrt': ((8, 15), {'BY-AU', 'BY-MU', 'SL'}),
+    'Tag der Deutschen Einheit': ((10, 3), None),
+    'Reformationstag': ((10, 31), {'BB', 'MW', 'SN', 'ST', 'TH'}),
+    'Allerheiligen': ((11, 1), {'BW', 'BY', 'BY-AU', 'BY-MU', 'NW', 'RP', 'SL'}),
     'Buß- und Bettag': (second_wednesday_before_the_first_advent, {'SN'}),
-    'Weihnachtstag': ((25, 12), None),
-    'Zweiter Weihnachtsfeiertag': ((26, 12), None),
+    'Weihnachtstag': ((12, 25), None),
+    'Zweiter Weihnachtsfeiertag': ((12, 26), None),
 }
 
 GLOBAL_EXCEPTIONS = {
