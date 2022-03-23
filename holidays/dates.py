@@ -1,6 +1,3 @@
-# coding: utf-8
-from __future__ import unicode_literals, absolute_import, print_function
-
 from datetime import date, timedelta
 
 
@@ -15,6 +12,16 @@ EASTERS = {
     2023: (4, 9),
     2024: (3, 31),
     2025: (4, 20),
+    2026: (4, 5),
+    2027: (4, 28),
+    2028: (4, 16),
+    2029: (4, 1),
+    2030: (4, 21),
+    2031: (4, 13),
+    2032: (3, 28),
+    2033: (4, 17),
+    2034: (4, 9),
+    2035: (3, 25),
 }
 
 FIRST_ADVENTS = {
@@ -28,6 +35,16 @@ FIRST_ADVENTS = {
     2023: (12, 3),
     2024: (12, 1),
     2025: (11, 30),
+    2026: (11, 29),
+    2027: (11, 28),
+    2028: (12, 3),
+    2029: (12, 2),
+    2030: (12, 1),
+    2031: (11, 30),
+    2032: (11, 28),
+    2033: (11, 27),
+    2034: (12, 3),
+    2035: (12, 2),
 }
 
 
@@ -47,7 +64,7 @@ def second_wednesday_before_the_first_advent(year):
 
 
 # Assuming that there are no gaps in EASTERS
-MAXIMUM_KNOWN_YEAR = max(EASTERS.iterkeys())
+MAXIMUM_KNOWN_YEAR = max(EASTERS.keys())
 
 REGIONS = {
     'BW': 'Baden-Württemberg',
