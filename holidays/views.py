@@ -22,7 +22,7 @@ def calendar_view():
     current_year = datetime.date.today().year
     feed = calendar.Calendar(
         summary='Feiertage in %s, Deutschland' % dates.REGIONS[region],
-        prodid='fulc.ru'
+        prodid='feiertage.vladmos.com'
     )
 
     for year in range(current_year - 1, dates.MAXIMUM_KNOWN_YEAR + 1):
