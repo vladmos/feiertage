@@ -69,8 +69,8 @@ MAXIMUM_KNOWN_YEAR = max(EASTERS.keys())
 REGIONS = {
     'BW': 'Baden-Württemberg',
     'BY': 'Freistaat Bayern',
-    'BY-AU': 'Freistaat Bayern: Augsburg',
-    'BY-MU': 'Freistaat Bayern: München',
+    'BY-AGB': 'Freistaat Bayern: Augsburg',
+    'BY-MUC': 'Freistaat Bayern: München',
     'BE': 'Berlin',
     'BB': 'Brandenburg',
     'HB': 'Freie Hansestadt Bremen',
@@ -85,6 +85,11 @@ REGIONS = {
     'ST': 'Sachsen-Anhalt',
     'SH': 'Schleswig-Holstein',
     'TH': 'Thüringen',
+}
+
+ALIASES = {
+    'BY-MU': 'BY-MUC',
+    'BY-AU': 'BY-AGB'
 }
 
 HOLIDAYS = {

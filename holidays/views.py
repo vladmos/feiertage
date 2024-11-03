@@ -12,6 +12,9 @@ def index():
 
 def calendar_view():
     region = flask.request.args.get('region', '').upper()
+    if region in dates.ALIASES:
+        region = dates.ALIASES[region]
+
     if region not in dates.REGIONS:
         return flask.Response(
             'Unknown region: %s' % region,
