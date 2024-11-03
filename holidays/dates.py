@@ -95,6 +95,7 @@ ALIASES = {
 HOLIDAYS = {
     'Neujahrstag': ((1, 1), None),
     'Heilige Drei Könige': ((1, 6), {'BW', 'BY', 'BY-AGB', 'BY-MUC', 'ST'}),
+    'Internationaler Frauentag': ((3, 8), {'BE', 'MV', }),
     'Karfreitag': (easter_day(-2), None),
     'Ostermontag': (easter_day(1), None),
     'Tag der Arbeit': ((5, 1), None),
@@ -103,8 +104,9 @@ HOLIDAYS = {
     'Fronleichnam': (easter_day(60), {'BW', 'BY', 'BY-AGB', 'BY-MUC', 'HE', 'NW', 'RP', 'SL'}),
     'Friedensfest': ((8, 8), {'BY-AGB'}),
     'Mariä Himmelfahrt': ((8, 15), {'BY-AGB', 'BY-MUC', 'SL'}),
+    'Weltkindertag': ((9, 20), {'TH'}),
     'Tag der Deutschen Einheit': ((10, 3), None),
-    'Reformationstag': ((10, 31), {'BB', 'MW', 'SN', 'ST', 'TH'}),
+    'Reformationstag': ((10, 31), {'BB', 'HB', 'HH', 'MW', 'NI', 'SN', 'ST', 'SH', 'TH'}),
     'Allerheiligen': ((11, 1), {'BW', 'BY', 'BY-AGB', 'BY-MUC', 'NW', 'RP', 'SL'}),
     'Buß- und Bettag': (second_wednesday_before_the_first_advent, {'SN'}),
     'Weihnachtstag': ((12, 25), None),
