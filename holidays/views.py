@@ -39,3 +39,7 @@ def calendar_view():
         feed.to_ical(),
         mimetype='text/calendar',
     )
+
+
+def warmup_view():
+    return ''
