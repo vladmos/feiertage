@@ -7,7 +7,7 @@ from holidays import dates, calendar
 
 def index():
     regions = sorted(dates.REGIONS.items())
-    return flask.render_template('index.html', regions=regions)
+    return flask.render_template('index.html', regions=regions, current_year=datetime.date.today().year)
 
 
 def calendar_view():
