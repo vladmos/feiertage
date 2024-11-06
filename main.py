@@ -13,4 +13,5 @@ def hostname_redirect():
 
 index = app.route(r'/')(views.index)
 calendar = app.route(r'/calendar')(views.calendar_view)
+calendar = app.route(r'/calendar/<region>')(views.calendar_view)
 warmup = app.route(r'/_ah/warmup')(views.warmup_view)
