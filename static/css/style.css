@@ -1,0 +1,13 @@
+#snippet-card {
+    display: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#snippet-card pre {
+    padding: 0.5rem;
+}
+
+.region {
+    cursor: pointer;
+}
