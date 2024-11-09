@@ -4,6 +4,7 @@
 
 <div class="card" id="snippet-card">
     <div class="card-body">
+        <h5 class="card-title" id="card-title">Card title</h5>
         <div class="container">
             <div class="row">
                 <div class="col-10">
@@ -28,7 +29,7 @@
 
 <ul>
     {% for code, name in regions %}
-        <li class="region" data-code="{{ code }}"><b>{{ code }}:</b> {{ name }}</li>
+        <li class="region" data-code="{{ code }}" data-name="{{ name }}"><b>{{ code }}:</b> {{ name }}</li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -2,7 +2,9 @@ $(function() {
     $('.region').on('click', function(event) {
         $('#snippet-card').show();
         var code = $(this).data('code');
-        console.log($('#code').text('https://feiertage.vladmos.com/calendar/' + code));
+        var name = $(this).data('name');
+        $('#code').text('https://feiertage.vladmos.com/calendar/' + code);
+        $('#card-title').text('Custom iCal feed for ' + name);
     });
 
     var copyToClipboard = function(text) {
@@ -18,6 +20,6 @@ $(function() {
         $('#copy').text('Copied');
         setTimeout(function() {
             $('#copy').text('Copy');
-        }, 500);
+        }, 1000);
     })
 });
